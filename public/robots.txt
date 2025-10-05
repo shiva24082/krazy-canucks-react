@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://krazy-canucks.web.app/sitemap.xml
