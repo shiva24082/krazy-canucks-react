@@ -64,7 +64,8 @@ function ClanCards() {
       image: '/img/kf.png',
       description: [
         "Introducing the Krazy Feeders clan, a community that values a relaxed and less active gaming experience.",
-        "With regular small wars, this clan offers a balanced and enjoyable gameplay for its members."
+        "With regular small wars, this clan offers a balanced and enjoyable gameplay for its members.",
+        " " // Empty space to maintain height
       ],
       link: 'https://link.clashofclans.com/en?action=OpenClanProfile&tag=Y9L29VLY'
     },
@@ -74,7 +75,8 @@ function ClanCards() {
       image: '/img/kl.png',
       description: [
         "Krazy Legends is a modern and straightforward clan that focuses solely on war.",
-        "With a name that captures attention, this clan is open exclusively during the Clan War Leagues (CWL)."
+        "With a name that captures attention, this clan is open exclusively during the Clan War Leagues (CWL).",
+        " " // Empty space to maintain height
       ],
       link: 'https://link.clashofclans.com/en?action=OpenClanProfile&tag=2LGGYCY8R'
     },
@@ -84,7 +86,8 @@ function ClanCards() {
       image: '/img/fl.png',
       description: [
         "Feed The Legion is a clan dedicated exclusively to Clan War Leagues (CWL).",
-        "Focused on boosting your performance and achieving top results."
+        "Focused on boosting your performance and achieving top results.",
+        " ", " ", " ", " ", " " // Empty spaces to maintain height
       ],
       link: 'https://link.clashofclans.com/en?action=OpenClanProfile&tag=YUURVP2R'
     },
@@ -94,7 +97,8 @@ function ClanCards() {
       image: '/img/kd.png',
       description: [
         "Krazy Dominion is a dedicated clan for side wars and friendly battles.",
-        "Focused on double loot during Clan War Leagues(CWL)"
+        "Focused on double loot during Clan War Leagues(CWL)",
+        " ", " ", " ", " ", " " // Empty spaces to maintain height
       ],
       link: 'https://link.clashofclans.com/en?action=OpenClanProfile&tag=2J9GGYVPP'
     }
@@ -106,18 +110,21 @@ function ClanCards() {
       <Row>
         {clans.map((clan) => (
           <Col key={clan.id} md={4} className="mb-4">
-            <Card>
-              <Card.Img variant="top" src={clan.image} alt={`${clan.name} Clan Badge`} />
-              <Card.Body>
+            <Card className="h-100 clan-card">
+              <Card.Img variant="top" src={clan.image} alt={`${clan.name} Clan Badge`} className="clan-card-img" />
+              <Card.Body className="d-flex flex-column">
                 <Card.Title className="text-center h4">{clan.name}</Card.Title>
-                <Card.Text>
-                  <ul className="p-2">
+                
+                {/* FIX: Remove Card.Text wrapper and use div instead */}
+                <div className="flex-grow-1 card-description-container">
+                  <ul className="p-2 card-description">
                     {clan.description.map((desc, index) => (
-                      <li key={index}>{desc}</li>
+                      <li key={index} className={desc === " " ? "invisible" : ""}>{desc}</li>
                     ))}
                   </ul>
-                </Card.Text>
-                <div className="d-flex flex-column flex-md-row">
+                </div>
+                
+                <div className="d-flex clan-card-buttons">
                   <OverlayTrigger
                     trigger="focus"
                     placement="top"
@@ -130,7 +137,7 @@ function ClanCards() {
                       </Popover>
                     }
                   >
-                    <Button variant="danger" size="sm" className="small-text me-2 mb-2">
+                    <Button variant="danger" size="sm" className="small-text me-2 clan-btn">
                       Clan Requirements
                     </Button>
                   </OverlayTrigger>
@@ -139,7 +146,7 @@ function ClanCards() {
                     target="_blank"
                     rel="noreferrer noopener"
                     variant="primary"
-                    className="small-text me-2"
+                    className="small-text me-2 clan-btn"
                     title={`Join ${clan.name} clan`}
                   >
                     Join {clan.name} for {clan.id === 'kf' ? 'a Relaxing' : clan.id === 'kl' || clan.id === 'fl' ? 'a Competitive' : 'an Epic'} Journey!
